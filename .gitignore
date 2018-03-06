@@ -53,5 +53,8 @@ jspm_packages
 .env
 .env.test
 
+# Package
+package-lock.json
+
 # Others
 .DS_Store
