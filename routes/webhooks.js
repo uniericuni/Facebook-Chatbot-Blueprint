@@ -3,9 +3,10 @@ import express from 'express';
 import api from '../api/api';
 import {VERIFY_TOKEN} from '../config';
 
-
 const router = express.Router();
 
+
+// --- Webhook GET --- //
 router.get('/', (req, res) => {
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
   }
 });
 
+// --- Webhook POST --- //
 router.post('/', (req, res) => {
   const body = req.body;
 

@@ -1,10 +1,8 @@
-import handleMessage from './message';
-import handlePostback from './postback';
-import handleGame from './game_request';
+import handleMessage    from './message';
+import handlePostback   from './postback';
 
 
 export default {
     handlePostback,
     handleMessage,
-    handleGame,
 }
