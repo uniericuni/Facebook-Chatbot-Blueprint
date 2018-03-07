@@ -41,6 +41,8 @@ const handleGreeting = (psid, postback) => {
 }
 
 const handleName = (psid, postback) => {
+  convSess.registerNameCallback(psid);
+
   let response = {
     recipient: {"id": psid},
     message: {"text": "The name is GlaDOS. And yours?"}

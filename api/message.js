@@ -28,14 +28,14 @@ const isSticker = (received_message) => {
 const handleTextMessage = (psid, text) => {
   let response = (convSess.isRegistered(psid))
     ? convSess.apply(psid, text)
-    : getEchoMessage(psid, text);
+    : getStartMessage(psid, text);
   sendAPI.sendMessage(response);
 }
 
-const getEchoMessage = (psid, text) => {
+const getStartMessage = (psid, text) => {
   return {
     recipient: {"id": psid},
-    message: {"text": text},
+    message: {"text": 'I hope you press thumb-up button instead of saying' + text},
   };
 }
 

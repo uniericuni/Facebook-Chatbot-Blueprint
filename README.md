@@ -13,7 +13,8 @@ git clone https://github.com/uniericuni/Facebook-Chatbot-Blueprint.git
 ```
 -  Run the starter code
 ```shell
-bash tools/start.sh
+cd ./Facebook-Chatbot-Blueprint
+bash bin/start.sh
 ```
   
 ### 2. Chatbot

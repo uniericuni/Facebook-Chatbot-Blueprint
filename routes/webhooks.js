@@ -1,8 +1,12 @@
-import express from 'express';
+import express          from 'express';
+import dotenv           from 'dotenv'
 
-import api from '../api/api';
-import {VERIFY_TOKEN} from '../config';
+import api              from '../api/api';
+import {VERIFY_TOKEN}   from '../config';
 
+dotenv.load();
+
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const router = express.Router();
 
 

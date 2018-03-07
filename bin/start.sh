@@ -15,5 +15,6 @@ echo "WEBHOOK_HOST='${WEBHOOK_HOST}'" >> .env
 # Deploy code
 git push heroku master
 
-# View logs
-heroku logs --tail
+# Create useful directories
+mkdir models
+mkdir views
