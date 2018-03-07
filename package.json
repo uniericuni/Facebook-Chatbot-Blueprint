@@ -1,7 +1,7 @@
 {
-  "name": "messenger-webhook",
+  "name": "messenger-blueprint",
   "version": "1.1.0",
-  "description": "messenger bot",
+  "description": "messenger chatbot blueprint",
   "main": "app.js",
   "scripts": {
     "start": "babel-node app.js --use_strict",
@@ -10,6 +10,10 @@
   },
   "author": "https://github.com/uniericuni",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/uniericuni/Facebook-Chatbot-Blueprint"
+  },
   "engines": {
     "node": ">= 7.6.0"
   },
