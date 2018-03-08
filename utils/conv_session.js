@@ -9,7 +9,7 @@ class ConversationSession {
     return this;
   }
 
-  unregister(psid, delete_user_thread=false) {
+  unregister(psid, delete_user_thread=true) {
     if (this.isRegistered(psid)) {
       (delete_user_thread)
         ? delete this._callback_table[psid]
@@ -23,7 +23,8 @@ class ConversationSession {
   }
 
   apply(psid, args) {
-    if (this.isRegistered(psid))
+    if (this.getCallback(psid) && 
+        typeof(this.getCallback(psid)) === 'function')
       return this.getCallback(psid)(args);
   }
 

@@ -25,10 +25,13 @@ const handleButtonPostback = (psid, postback) => {
   switch (payload) {
     case "GREETING":
       handleGreeting(psid, postback);
+      return;
     case "NAME":
       handleName(psid, postback);
+      return;
     default:
       console.log('[webhook error] undefined button postback type');
+      return;
   }
 }
 

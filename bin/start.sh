@@ -30,4 +30,4 @@ git add -A
 git commit -m "[Init] A new page starts!"
 
 # Deploy code
-git push heroku master
+git push --set-upstream heroku master

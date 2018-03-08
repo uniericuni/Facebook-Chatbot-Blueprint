@@ -35,7 +35,7 @@ const handleTextMessage = (psid, text) => {
 const getStartMessage = (psid, text) => {
   return {
     recipient: {"id": psid},
-    message: {"text": 'I hope you press thumb-up button instead of saying' + text},
+    message: {"text": 'I hope you press thumb-up button instead of saying ' + text},
   };
 }
 
@@ -60,21 +60,6 @@ const isThumbUp = (sticker_id) => {
           sticker_id === 369239383222810);  // large thumb-up
 }
 
-// --- Template --- //
-const template = {
-  "attachment": {
-    "type": "template",
-    "payload": {
-      "template_type": "button",
-      "text": "What can I do for you?",
-      "buttons": [
-        postbackButton,
-        postbackButtonWithConvSess,
-      ]
-    }
-  }
-}
-
 // --- Buttons --- //
 const postbackButton = {
   "type": "postback",
@@ -88,3 +73,18 @@ const postbackButtonWithConvSess = {
   "payload": "NAME"
 }
 
+
+// --- Template --- //
+const template = {
+  "attachment": {
+    "type": "template",
+    "payload": {
+      "template_type": "button",
+      "text": "🤖",
+      "buttons": [
+        postbackButton,
+        postbackButtonWithConvSess,
+      ]
+    }
+  }
+}

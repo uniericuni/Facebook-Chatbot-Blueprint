@@ -3,7 +3,6 @@ import dotenv   from 'dotenv';
 
 dotenv.load();
 
-
 // --- Send API --- //
 const sendMessage = (response) => {
   request({

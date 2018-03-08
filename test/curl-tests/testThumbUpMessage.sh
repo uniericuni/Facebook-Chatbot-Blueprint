@@ -6,8 +6,8 @@ curl \
     "entry": [{
       "messaging": [{
         "messaging_type": "<MESSAGING_TYPE>",
-        "sender": {"id": "2014321581917874"},
-        "recipient": {"id": "173511476584074"},
+        "sender": {"id": "1606015496154680"},
+        "recipient": {"id": "430311617404468"},
         "message": {
           "mid":"mid.$cAADHPVJEDStnxdJQ-VhlI0IqAqYu",
           "seq":1306584,
