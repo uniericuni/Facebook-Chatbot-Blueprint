@@ -1,9 +1,11 @@
 import chai     from 'chai';
 import chaiHttp from 'chai-http';
+import dotenv   from 'dotenv'
 
+dotenv.load();
 chai.use(chaiHttp);
 
-hub.verify_token=<YOUR_VERIFY_TOKEN>&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe
+const webhookUrl = 'localhost:' + process.env.PORT
 
 
 // --- Verification Test --- //
@@ -43,6 +45,7 @@ describe('Verification Test', () => {
   });
 });
 
+/*
 // --- Behavior Test --- //
 describe('Behavior Test', () => {
   it('should show you a template', (done) => {
@@ -55,3 +58,4 @@ describe('Behavior Test', () => {
       });
   });
 });
+*/

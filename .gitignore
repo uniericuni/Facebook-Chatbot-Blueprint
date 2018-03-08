@@ -52,5 +52,8 @@ jspm_packages
 # Package
 package-lock.json
 
+# Backups
+.*.swp
+
 # Others
 .DS_Store
