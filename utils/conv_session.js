@@ -23,8 +23,7 @@ class ConversationSession {
   }
 
   apply(psid, args) {
-    if (this.getCallback(psid) && 
-        typeof(this.getCallback(psid)) === 'function')
+    if (this.getCallback(psid))
       return this.getCallback(psid)(args);
   }
 
@@ -34,7 +33,7 @@ class ConversationSession {
 
   // --- Predefined Callback --- //
   registerNameCallback(psid) {
-    this.register(psid, (name) => {
+    return this.register(psid, (name) => {
       let text = "Nice to meet you "
                     + name 
                     + ". Would you like to have a cake?";
@@ -50,7 +49,7 @@ class ConversationSession {
   }
 
   registerNextCallback(psid) {
-    this.register(psid, (ans) => {
+    return this.register(psid, (ans) => {
       ans = ans.toLowerCase();
       let text = "";
 

@@ -21,6 +21,8 @@ router.get('/', (req, res) => {
     } else {
       res.sendStatus(403);
     }
+  } else {
+    res.sendStatus(404);
   }
 });
 
@@ -29,6 +31,7 @@ router.post('/', (req, res) => {
   const body = req.body;
 
   if (body.object === 'page'){
+    console.log('hello');
     body.entry.forEach( (entry) => {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id;

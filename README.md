@@ -43,3 +43,13 @@ bash bin/start.sh
   ```
   - Check messages and message_postbacks boxes to subscribe basic APIs.
   - Select the same page to subscribe.
+
+### 3. Local Test
+- Open a local webhook server on your terminal
+```shell
+npm start
+```
+- Open an additional terminal table and test use the test script
+```shell
+npm test
+```

@@ -4,7 +4,7 @@
   "description": "messenger chatbot blueprint",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js -r dotenv/config --use_strict",
+    "start": "babel-node app.js --use_strict",
     "heroku-postbuild": "npm install",
     "test": "mocha --require babel-register"
   },
