@@ -5,7 +5,6 @@ import dotenv       from 'dotenv'
 
 import index        from './routes/index';
 import webhooks     from './routes/webhooks';
-import games        from './routes/games';
 
 dotenv.load();
 

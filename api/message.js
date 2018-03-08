@@ -1,5 +1,5 @@
 import sendAPI  from './send_api';
-import convSess from '../model/conv_session'
+import convSess from '../utils/conv_session'
 
 
 // --- Message Handler --- //
@@ -54,7 +54,7 @@ const handleStickerMessage = (psid, attachments) => {
   }
 }
 
-const isThumbUp = (stiker_id) => {
+const isThumbUp = (sticker_id) => {
   return (sticker_id === 369239263222822 || // small thumb-up
           sticker_id === 369239343222814 || // medium thumb-up
           sticker_id === 369239383222810);  // large thumb-up
@@ -82,7 +82,7 @@ const postbackButton = {
   "payload": "GREETING"
 }
 
-const postbackButtonWithContext = {
+const postbackButtonWithConvSess = {
   "type": "postback",
   "title": "Your Name?",
   "payload": "NAME"

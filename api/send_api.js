@@ -1,13 +1,14 @@
-import request from 'request';
-import {SERVER_URI, WEBHOOK_RESPONSE_URI, GAME_ACCESS_TOEKN, PAGE_ACCESS_TOKEN} from '../config';
+import request  from 'request';
+import dotenv   from 'dotenv'
+
+dotenv.load();
 
 
 // --- Send API --- //
-// messenger send API: https://developers.facebook.com/docs/messenger-platform/reference/send-api/
 const sendMessage = (response) => {
   request({
-    uri: WEBHOOK_RESPONSE_URI,
-    qs: {"access_token": PAGE_ACCESS_TOKEN},
+    uri: process.env.CLIENT_HOST,
+    qs: {"access_token": process.env.PAGE_ACCESS_TOKEN},
     method: "POST",
     json: response
   }, (error, response, body) => {

@@ -1,5 +1,5 @@
 import sendAPI  from './send_api';
-import convSess from '../model/conv_session'
+import convSess from '../utils/conv_session'
 
 
 // --- Postback Handler --- //

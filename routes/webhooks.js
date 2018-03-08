@@ -2,11 +2,9 @@ import express          from 'express';
 import dotenv           from 'dotenv'
 
 import api              from '../api/api';
-import {VERIFY_TOKEN}   from '../config';
 
 dotenv.load();
 
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const router = express.Router();
 
 
@@ -17,7 +15,7 @@ router.get('/', (req, res) => {
   let challenge = req.query['hub.challenge'];
 
   if (mode && token){
-    if (mode == 'subscribe' && token === VERIFY_TOKEN) {
+    if (mode == 'subscribe' && token === process.env.VERIFY_TOKEN) {
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
     } else {
