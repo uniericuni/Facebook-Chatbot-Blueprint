@@ -1,7 +1,7 @@
 import express      from 'express';
 import bodyParser   from 'body-parser';
 import morgan       from 'morgan';
-import dotenv       from 'dotenv'
+import dotenv       from 'dotenv';
 
 import index        from './routes/index';
 import webhooks     from './routes/webhooks';

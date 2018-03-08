@@ -1,6 +1,8 @@
-import chai     from 'chai';
-import chaiHttp from 'chai-http';
-import dotenv   from 'dotenv'
+import {describe}   from 'mocha';
+import {expect}     from 'chai';
+import chai         from 'chai';
+import chaiHttp     from 'chai-http';
+import dotenv       from 'dotenv'
 
 dotenv.load();
 chai.use(chaiHttp);
@@ -23,12 +25,13 @@ describe('Verification Test', () => {
     chai.request(webhookUrl)
       .get('/webhook')
       .query({
-        hub.mode: 'subscribe',
-        hub.challenge: 'CHALLENGE_ACCEPTED',
-        hub.verify_token: VERIFY_TOEKN})
+        'hub.mode': 'subscribe',
+        'hub.challenge': 'CHALLENGE_ACCEPTED',
+        'hub.verify_token': process.env.VERIFY_TOEKN})
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res).to.be('CHALLENGE_ACCEPTED');
+        done();
       });
   });
 
@@ -36,11 +39,12 @@ describe('Verification Test', () => {
     chai.request(webhookUrl)
       .get('/webhook')
       .query({
-        hub.mode: 'subscribe',
-        hub.challenge: 'CHALLENGE_ACCEPTED',
-        hub.verify_token: ''})
+        'hub.mode': 'subscribe',
+        'hub.challenge': 'CHALLENGE_ACCEPTED',
+        'hub.verify_token': process.env.VERIFY_TOEKN})
       .end((err, res) => {
         expect(res).to.have.status(403);
+        done();
       });
   });
 });
