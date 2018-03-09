@@ -1,4 +1,4 @@
-import sendAPI  from './send_api';
+import sendAPI  from './send';
 import convSess from '../utils/conv_session'
 
 
@@ -36,19 +36,10 @@ const handleButtonPostback = (psid, postback) => {
 }
 
 const handleGreeting = (psid, postback) => {
-  let response = {
-    recipient: {"id": psid},
-    message: {"text": "Greetings!"}
-  };
-  sendAPI.sendMessage(response);
+  sendAPI.sendMessage(psid, "Greetings!");
 }
 
 const handleName = (psid, postback) => {
   convSess.registerNameCallback(psid);
-
-  let response = {
-    recipient: {"id": psid},
-    message: {"text": "The name is GlaDOS. And yours?"}
-  };
-  sendAPI.sendMessage(response);
+  sendAPI.sendMessage(psid, "The name is GlaDOS. And yours?");
 }

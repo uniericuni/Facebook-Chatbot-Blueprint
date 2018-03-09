@@ -49,14 +49,14 @@ describe('Verification Test', () => {
   });
 });
 
-// --- Behavior Test -- //
+// --- Behavior Test --- //
 const message = {
   "object": "page", 
   "entry": [{
     "messaging": [{
       "messaging_type": "<MESSAGING_TYPE>",
-      "sender": {"id": "1606015496154680"},
-      "recipient": {"id": "430311617404468"},
+      "sender": {"id": process.env.TEST_SENDER_PSID},
+      "recipient": {"id": process.env.TEST_RECIPIENT_PSID},
       "message": {
         "mid":"mid.$cAADHPVJEDStnxdJQ-VhlI0IqAqYu",
         "seq":1306584,

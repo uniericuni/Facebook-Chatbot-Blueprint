@@ -23,7 +23,8 @@ class ConversationSession {
   }
 
   apply(psid, args) {
-    if (this.getCallback(psid))
+    if (this.getCallback(psid) &&
+        typeof(this.getCallback(psid))==='function')
       return this.getCallback(psid)(args);
   }
 
@@ -34,17 +35,13 @@ class ConversationSession {
   // --- Predefined Callback --- //
   registerNameCallback(psid) {
     return this.register(psid, (name) => {
-      let text = "Nice to meet you "
-                    + name 
-                    + ". Would you like to have a cake?";
-
       this.unregister(psid);
       this.registerNextCallback(psid);
 
-      return {
-        recipient: {"id": psid},
-        message: {"text": text},
-      };
+      let text = "Nice to meet you "
+                    + name 
+                    + ". Would you like to have a cake?";
+      return text;
     });
   }
 
@@ -62,11 +59,7 @@ class ConversationSession {
       } else {
         text = "Sorry, I don't understand your answer. I hope simple answer such as yes and no are not too difficult for you.";
       }
-
-      return {
-        recipient: {"id": psid},
-        message: {"text": text},
-      };
+      return text;
     });
   }
 }

@@ -1,4 +1,4 @@
-import sendAPI  from './send_api';
+import sendAPI  from './send';
 import convSess from '../utils/conv_session'
 
 
@@ -26,17 +26,15 @@ const isSticker = (received_message) => {
 
 // --- Text Message Handler --- //
 const handleTextMessage = (psid, text) => {
-  let response = (convSess.isRegistered(psid))
+  let answer = (convSess.isRegistered(psid))
     ? convSess.apply(psid, text)
     : getStartMessage(psid, text);
-  sendAPI.sendMessage(response);
+  sendAPI.sendMessage(psid, answer);
 }
 
 const getStartMessage = (psid, text) => {
-  return {
-    recipient: {"id": psid},
-    message: {"text": 'I hope you press thumb-up button instead of saying ' + text},
-  };
+  let answer = 'It would be better to press thumb-up button instead of saying ' + text;
+  return answer;
 }
 
 // --- Sticker Message Handler --- //
@@ -44,11 +42,7 @@ const handleStickerMessage = (psid, attachments) => {
   let sticker_id = attachments[0].payload.sticker_id;
 
   if (isThumbUp(sticker_id)) {
-    let response = {
-      "recipient": {"id": psid},
-      "message": template,
-    };
-    sendAPI.sendMessage(response);
+    sendAPI.sendTemplate(psid);
   } else {
     console.log('[webhook error] undefined message sticker id');
   }
@@ -58,33 +52,4 @@ const isThumbUp = (sticker_id) => {
   return (sticker_id === 369239263222822 || // small thumb-up
           sticker_id === 369239343222814 || // medium thumb-up
           sticker_id === 369239383222810);  // large thumb-up
-}
-
-// --- Buttons --- //
-const postbackButton = {
-  "type": "postback",
-  "title": "Hello",
-  "payload": "GREETING"
-}
-
-const postbackButtonWithConvSess = {
-  "type": "postback",
-  "title": "Your Name?",
-  "payload": "NAME"
-}
-
-
-// --- Template --- //
-const template = {
-  "attachment": {
-    "type": "template",
-    "payload": {
-      "template_type": "button",
-      "text": "🤖",
-      "buttons": [
-        postbackButton,
-        postbackButtonWithConvSess,
-      ]
-    }
-  }
 }

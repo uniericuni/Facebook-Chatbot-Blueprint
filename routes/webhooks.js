@@ -1,5 +1,6 @@
 import express          from 'express';
 import dotenv           from 'dotenv';
+import fs               from 'fs';
 
 import api              from '../api/api';
 
@@ -31,10 +32,15 @@ router.post('/', (req, res) => {
   const body = req.body;
 
   if (body.object === 'page'){
-    console.log('hello');
     body.entry.forEach( (entry) => {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id;
+      let recipient_psid = webhook_event.recipient.id;
+
+      if (process.env.SHOW_PSID) {
+        console.log("[webhook event] sender: " + sender_psid.toString());
+        console.log("[webhook event] recipient: " + recipient_psid.toString());
+      }
 
       if (webhook_event.message){
         api.handleMessage(sender_psid, webhook_event.message);

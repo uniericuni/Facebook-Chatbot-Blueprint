@@ -25,8 +25,7 @@ describe('Conversation Session Test', () => {
 
   it('should match the responses', (done) => {
     res = convSess.apply(psid, name);
-    expect(res.recipient).to.have.property('id', psid);
-    expect(res.message).to.have.property('text', res1);
+    expect(res).to.be.equal(res1);
     done();
   });
 
@@ -38,12 +37,10 @@ describe('Conversation Session Test', () => {
 
   it('should match the responses', (done) => {
     res = convSess.apply(psid, 'yep');
-    expect(res.recipient).to.have.property('id', psid);
-    expect(res.message).to.have.property('text', res2);
+    expect(res).to.be.equal(res2);
 
     res = convSess.apply(psid, 'YeS');
-    expect(res.recipient).to.have.property('id', psid);
-    expect(res.message).to.have.property('text', res3);
+    expect(res).to.be.equal(res3);
     done();
   });
 

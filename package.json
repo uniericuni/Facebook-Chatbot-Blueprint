@@ -1,6 +1,6 @@
 {
   "name": "messenger-blueprint",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "messenger chatbot blueprint",
   "main": "app.js",
   "scripts": {
