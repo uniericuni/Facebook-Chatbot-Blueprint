@@ -1,55 +1,74 @@
 # Facebook Chatbot Blueprint
 
+<a target="_blank" href="https://opensource.org/licenses/MIT" title="License: MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+
+This is a blueprint for building facebook chatbot. You may fork this repo to start your project.
+
+The blueprint contains basic webhook event handlers, logging mechanism, dialogue management mechanism, etc. It also provides simple deployment process on Heroku. Please refer to the following bullet points for more details.
+
+
 ## Setups
 
 ### 1. Heroku
 
-> Reference [Getting Started on Heroku with Node.js | Heroku Dev Center](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)
-
-- Create a [Heroku](https://dashboard.heroku.com/) account, install the CLI, and log in heroku on your local machine
-- Clone the Project
-```shell
-git clone https://github.com/uniericuni/Facebook-Chatbot-Blueprint.git
-```
--  Run the starter code
-```shell
-cd ./Facebook-Chatbot-Blueprint
-bash bin/start.sh
-```
+  If you haven't got a Heroku account, create one, [install CLI](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) and login on your local machine. Also, make sure that your application number hasn't surpass your limitation.
   
-### 2. Chatbot
+### 2. Facebook App
 
-> Reference [Setting Up Your Facebook App](https://developers.facebook.com/docs/messenger-platform/getting-started/app-setup)
+  Before starting on your cahtbot, you must own a Facebook page and a Facebook developer account. Open your [developer page](https://developers.facebook.com) and login. Choose or create an app on `My Apps` menu. Go to *Add Product* section on the dashboard, and hit `Set Up` on *Messenger* card.
 
-> You must fullfill the 4 requirements for the listed on the guiding steps above: Facebook page, developer account, and webhook URI (if you followed the previous step, you should find the correct URI in your *.env*).
+### 3. Local Setup and Deployment
 
-- Open messenger setup board
-  - Open the Facebook developper [page](https://developers.facebook.com) and log in.
-  - Choose the app you would like to create a messenger chatbot for in the **My Apps** menu.
-  - Go to the **Add Product** section in the dashboard, hit **Set Up**.
+  Clone the Project and run the starter code.
   
-- Update page access token
-  - Go to **Token Generation** section, choose the page you'd like to register this bot on, and copy the token. (Notice that the token will be renewed every time you press the button)
-  - Replace the folloiing line in *.env* with the token you just copied.
-  ```bash
-  PAGE_ACCESS_TOKEN='<PAGE_ACCESS_TOKEN>'
+  ```shell
+  git clone https://github.com/uniericuni/Facebook-Chatbot-Blueprint.git
+  cd ./Facebook-Chatbot-Blueprint
+  bash bin/start.sh
   ```
-- Setup chatbot webhook and subscription for APIs
-  - Hit the **Setup Webhooks** button in webhook section.
-  - Paste `<WEBHOOK_HOST>/webhook` (the value is in *.env*) on Callback URL.
-  - Create a Verify Token and replace your
-  ```bash
-  VERIFY_TOKEN='<VERIFY_TOKEN>'
-  ```
-  - Check messages and message_postbacks boxes to subscribe basic APIs.
-  - Select the same page to subscribe.
+  
+  Don't worry about `Invalid OAuth token access` error. We will fix it in the next step.
 
-### 3. Local Test
-- Open a local webhook server on your terminal
-```shell
-npm start
-```
-- Open an additional terminal table and test use the test script
-```shell
-npm test
-```
+### 4. Webhook Setup
+  
+  Go to *Token Generation* section on the messenger set-up page, choose a page, and copy the token generated (Notice that the token will be renewed every time you press the button).
+  
+  Replace `<PAGE_ACCESS_TOKEN>` in `.env` with the token.
+  
+  Hit the `Setup Webhooks` in webhook section. Paste `<WEBHOOK_HOST>/webhook` (check the value in `.env`). Enter your verify token and replace `<VERIFY_TOKEN>` with it.
+  
+  Check `messages` and `message_postbacks` to subscribe basic APIs. Select the same page to subscribe.
+  
+  Don't forget to commit and push your local change. You can use the aliased git command to avoid redundant commits (Check `bin/start.sh` for more details).
+  
+  ```shell
+  ezpush
+  ```
+
+### 5. Local Test
+
+  You may now send message to the chatbot, check log messages on Heroku app with
+  
+  ```shell
+  heroku logs --tail
+  ```
+  
+  Replace `<SENDER_PSID>` and `<RECIPIENT_PSID>` with the log messages you received for better test experience. We also suggest you to turn `SHOW_PSID` false after this. Again, don't forget to push the local changes.
+
+  You may start a local webhook server on your terminal
+  
+  ```shell
+  npm start
+  ```
+
+  Then, open another terminal tab and start the test
+  
+  ```shell
+  npm test
+  ```
+
+## FAQ
+
+### Why do I received *EADDRINUSE* Error?
+
+  Check if there are running node processes in background with `ps -al`. If there is any persistent node process, kill it with `kill <PID>`. Check [this link](https://github.com/Unitech/pm2/issues/1583) for more detailed about why there are two node processes.

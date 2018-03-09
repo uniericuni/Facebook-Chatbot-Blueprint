@@ -33,15 +33,16 @@ git add -A
 git commit -m "[Init] A new page starts!"
 
 # Deploy code
-git push heroku master
+git push --set-upstream heroku master
+alias ezpush='git add -A; git commit --amend --no-edit; git push -f'
 
 # Open local server
 npm start &
 NODE_SERVER_PID=$!
 
-# Local test 
+# Run local test 
 sleep 1
 npm test
 
-# Kill background process
+# Kill background node processes
 kill $((NODE_SERVER_PID + 3))
