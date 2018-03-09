@@ -6,18 +6,19 @@ This is a blueprint for building facebook chatbot. You may fork this repo to sta
 
 The blueprint contains basic webhook event handlers, logging mechanism, dialogue management mechanism, etc. It also provides simple deployment process on Heroku. Please refer to the following bullet points for more details.
 
+Go to <a href="https://github.com/uniericuni/Facebook-Chatbot-Blueprint#cheat"><b>Cheat Sheet</b></a> for less detailed set-up steps.
 
 ## Setups
 
-### 1. Heroku
+### Heroku
 
   If you haven't got a Heroku account, create one, [install CLI](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) and login on your local machine. Also, make sure that your application number hasn't surpass your limitation.
   
-### 2. Facebook App
+### Facebook App
 
   Before starting on your cahtbot, you must own a Facebook page and a Facebook developer account. Open your [developer page](https://developers.facebook.com) and login. Choose or create an app on `My Apps` menu. Go to *Add Product* section on the dashboard, and hit `Set Up` on *Messenger* card.
 
-### 3. Local Setup and Deployment
+### Local Setup and Deployment
 
   Clone the Project and run the starter code.
   
@@ -29,25 +30,17 @@ The blueprint contains basic webhook event handlers, logging mechanism, dialogue
   
   Don't worry about `Invalid OAuth token access` error. We will fix it in the next step.
 
-### 4. Webhook Setup
+### Webhook Setup
   
-  Go to *Token Generation* section on the messenger set-up page, choose a page, and copy the token generated (Notice that the token will be renewed every time you press the button).
+  Go to *Token Generation* section on the messenger setup page, choose a page, and copy the token generated (Notice that the token will be renewed every time you press the button). Replace `<PAGE_ACCESS_TOKEN>` in `.env` with the token.
   
-  Replace `<PAGE_ACCESS_TOKEN>` in `.env` with the token.
+  Hit the `Setup Webhooks` in webhook section. Paste `<WEBHOOK_HOST>/webhook` (check the value in `.env`). Enter your verify token and replace `<VERIFY_TOKEN>` with it. Check `messages` and `message_postbacks` to subscribe basic APIs. Select the same page to subscribe.
   
-  Hit the `Setup Webhooks` in webhook section. Paste `<WEBHOOK_HOST>/webhook` (check the value in `.env`). Enter your verify token and replace `<VERIFY_TOKEN>` with it.
-  
-  Check `messages` and `message_postbacks` to subscribe basic APIs. Select the same page to subscribe.
-  
-  Don't forget to commit and push your local change. You can use the aliased git command to avoid redundant commits (Check `bin/start.sh` for more details).
-  
-  ```shell
-  ezpush
-  ```
+  Don't forget to commit and push your local change. You can use the aliased git command `ezpush` to avoid redundant commits (Check `bin/start.sh` for more details).
 
-### 5. Local Test
+### Local Test
 
-  You may now send message to the chatbot, check log messages on Heroku app with
+  You may now send message to the chatbot. Check log messages on Heroku app with
   
   ```shell
   heroku logs --tail
@@ -66,6 +59,18 @@ The blueprint contains basic webhook event handlers, logging mechanism, dialogue
   ```shell
   npm test
   ```
+  
+<h2 id="cheat">Cheat Sheet</h2>
+
+  - Make sure you have Heroku account and logged in locally
+  - Make sure you have a Facebook app and page
+  - Run this `git clone https://github.com/uniericuni/Facebook-Chatbot-Blueprint.git`
+  - Run this `cd ./Facebook-Chatbot-Blueprint`
+  - Run this `bash bin/start.sh`
+  - Open the messenger setup page in the app
+  - Replace variable in `.env` with corresponding values on the setup page
+  - Check `message` and `message_postbacks` during setup
+  - Run this `ezpush`
 
 ## FAQ
 

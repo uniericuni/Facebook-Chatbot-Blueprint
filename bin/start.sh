@@ -34,7 +34,8 @@ git commit -m "[Init] A new page starts!"
 
 # Deploy code
 git push --set-upstream heroku master
-alias ezpush='git add -A; git commit --amend --no-edit; git push -f'
+echo "alias ezpush='git add -A; git commit --amend --no-edit; git push -f'" >> ~/.bashrc
+source ~/.bashrc
 
 # Open local server
 npm start &

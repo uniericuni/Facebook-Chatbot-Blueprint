@@ -12,12 +12,12 @@ const app = express().use(bodyParser.json());
 const logger = morgan('[webhook event] :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]')
 
 
-// --- Web App --- //
-app.listen(process.env.PORT || 1337, () => console.log('[webhook initialization] webhook is listening'));
-
 // --- Logger --- //
 app.use(logger);
 
 // --- Routes --- //
 app.use('/', index);
 app.use('/webhook', webhooks);
+
+// --- Start Litening --- //
+app.listen(process.env.PORT || 1337, () => console.log('[webhook initialization] webhook is listening'));
