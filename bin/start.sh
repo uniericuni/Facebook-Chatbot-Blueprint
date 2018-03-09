@@ -36,4 +36,12 @@ git commit -m "[Init] A new page starts!"
 git push heroku master
 
 # Open local server
-npm start
+npm start &
+NODE_SERVER_PID=$!
+
+# Local test 
+sleep 1
+npm test
+
+# Kill background process
+kill $((NODE_SERVER_PID + 3))
